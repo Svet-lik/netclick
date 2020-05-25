@@ -25,6 +25,12 @@ leftMenu.addEventListener('click', event => {
         leftMenu.classList.add('openMenu');
         hamburger.classList.add('open');
     };
+});
 
-
+document.querySelectorAll('.tv-card__img').forEach((card)=>{
+    let src = card.src;
+    card.addEventListener('mouseenter', () => {           
+        card.src = card.getAttribute('data-backdrop');
+    });
+    card.addEventListener('mouseleave',() => {card.src = src});
 });
