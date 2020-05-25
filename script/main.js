@@ -28,7 +28,7 @@ leftMenu.addEventListener('click', event => {
 });
 
 
-//переключение картинок в карточках
+//переключение картинок карточек
 document.querySelectorAll('.tv-card__img').forEach((card)=>{
     let src = card.src;
     card.addEventListener('mouseenter', () => {           
