@@ -1,486 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Delivery Food — доставка еды на дом</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap&subset=cyrillic" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Netclicks - все о сериалах</title>
+
 </head>
 
 <body>
-	<div class="container">
-		<header class="header">
-			<a class="logo">
-				<img src="img/icon/logo.svg" alt="Logo"/>
-			</a>
-			<label class="address">
-				<input type="text" class="input input-address" placeholder="Адрес доставки"/>
-			</label>
-			<div class="buttons">
-				<span class="user-name"></span>
-				<button class="button button-primary button-auth">
-					<span class="button-auth-svg"></span>
-					<span class="button-text">Войти</span>
-				</button>
-				<button class="button button-cart" id="cart-button">
-					<span class="button-cart-svg"></span>
-					<span class="button-text">Корзина</span>
-				</button>
-				<button class="button button-primary button-out">
-					<span class="button-text">Выйти</span>
-					<span class="button-out-svg"></span>
-				</button>
-			</div>
-		</header>
-	</div>
-	<!-- /.container  -->
+<div class="left-menu">
+    <div class="hamburger active">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <ul class="left-menu__list">
+        <li>
+            <a href="#" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span>ПОИСК</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="dropdown">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+                <span>РЕЙТИНГ</span>
+            </a>
+            <ul class="dropdown-list">
+                <li>
+                    <a href="#" id="top-rated">
+                        <span>Топ сериалы</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="popular">
+                        <span>Популярные</span>
+                    </a>
+                </li>
 
-	<main class="main">
-		<div class="container">
-			<section class="container-promo">
-				<section class="promo pizza">
-					<h1 class="promo-title">Онлайн-сервис <br/>доставки еды на дом</h1>
-					<p class="promo-text">
-						Блюда из любимого ресторана привезет курьер в перчатках, маске и с антисептиком
-					</p>
-				</section>
-				<!-- <section class="promo kebab">
-					<h1 class="promo-title">Шашлыки на майские <br> со скидкой 35%</h1>
-					<p class="promo-text">
-						Закажите шашлыки в любом ресторане до 10 мая и получите скидку по промокоду OMAGAD
-					</p>
-				</section>
-				<section class="promo vegetables">
-					<h1 class="promo-title">Скидка 20% на всю еду <br> по промокоду LOVE.JS</h1>
-					<p class="promo-text">
-						Блюдо из ресторана привезут вместе с двумя подарочными книгами по фронтенду
-					</p>
-				</section>
-				<section class="promo sushi">
-					<h1 class="promo-title">Сеты со скидкой до 30% <br> в ресторанах</h1>
-					<p class="promo-text">
-						Скидки на сеты до 30 мая по промокоду DADADA
-					</p>
-				</section> -->
-			</section>
-			<section class="restaurants">
-				<div class="section-heading">
-					<h2 class="section-title">Рестораны</h2>
-					<label class="search">
-						<input type="text" class="input input-search" placeholder="Поиск блюд и ресторанов"/>
-					</label>
-				</div>
-				<div class="cards cards-restaurants">
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/pizza-plus/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">Пицца плюс</h3>
-								<span class="card-tag tag">50 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 900 ₽</div>
-								<div class="category">Пицца</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown">
+                <i class="fa fa-tv" aria-hidden="true"></i>
+                <span>НОВЫЕ ЭПИЗОДЫ</span>
+            </a>
+            <ul class="dropdown-list">
+                <li>
+                    <a href="#" id="today">
+                        <span>Сегодня</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="week">
+                        <span>На неделю</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/tanuki/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">Тануки</h3>
-								<span class="card-tag tag">60 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 1 200 ₽</div>
-								<div class="category">Суши, роллы</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
+<header>
+    <div class="container header-flex">
+        <hgroup class="title-wrapper">
+            <h1 class="title">Netclicks</h1>
+            <h2 class="subtitle">все о сериалах</h2>
+        </hgroup>
 
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/food-band/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">FoodBand</h3>
-								<span class="card-tag tag">40 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 450 ₽</div>
-								<div class="category">Пицца</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
+        <section class="search">
+            <form class="search__form">
+                <h2 class="search__form-head">Поиск</h2>
+                <label class="search__form-block">
+                    <input type="text" class="search__form-input" id="searchText"
+                           placeholder="Введи название...">
+                </label>
+            </form>
+        </section>
+    </div>
+</header>
 
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/palki-skalki/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">Палки скалки</h3>
-								<span class="card-tag tag">55 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 500 ₽</div>
-								<div class="category">Пицца</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
+<main>
+    <div class="container">
+        <section class="tv-shows">
+            <h3 class="tv-shows__head">Результат поиска</h3>
+            <ul class="tv-shows__list">
+                 <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">7.4</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/fhV9ckyBko1ZejEEmwdiXG8YMy5.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/AdJgkXb8oLI8e4rsk8XzkvABIuw.jpg"
+                             alt="Звёздные войны: Повстанцы">
+                        <h4 class="tv-card__head">Звёздные войны: Повстанцы</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">8.1</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/o9XEd15zRzef9SlOuJYPdS5HCdK.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/lXWgVQ1whAEMz4Ju88UyPoveIKD.jpg"
+                             alt="Звёздные войны: Войны клонов">
+                        <h4 class="tv-card__head">Звёздные войны: Войны клонов</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">7.1</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/2lsuke69bRdyB1sxtKmavtwkc35.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/pxkeqSHfTkefKz0y5naAX1u9cDw.jpg"
+                             alt="Звёздные войны. Войны клонов">
+                        <h4 class="tv-card__head">Звёздные войны. Войны клонов</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.4</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/xul6SG8rar3wkHPY8YusUtxcdlZ.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/9eXNA3K010TlkUTLSzQ07cP6uPF.jpg"
+                             alt="Звёздные войны: Сопротивление">
+                        <h4 class="tv-card__head">Звёздные войны: Сопротивление</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">4.2</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/z8l5c046nQ9KoHpKIrcTBw7P7dL.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/z8l5c046nQ9KoHpKIrcTBw7P7dL.jpg"
+                             alt="Дроиды">
+                        <h4 class="tv-card__head">Дроиды</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.6</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/uv7QkoePPK5PfpYVVim6JI8DEpO.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/afHWBChQ16H1xutbtq2lrKFC4TF.jpg"
+                             alt="Эвоки">
+                        <h4 class="tv-card__head">Эвоки</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.3</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/f2tf2EuXM6hP2OkRWWmIB0uj6HV.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/a68xDZ48UnzN5KpTwp0UQLyYSYn.jpg"
+                             alt="Disney Gallery / Star Wars: The Mandalorian">
+                        <h4 class="tv-card__head">Disney Gallery / Star Wars: The Mandalorian</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">4.6</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/a5d2y264VgYUvpKUNNT6EbL1Cwb.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/rfxCWSwzkeeQne9Mb8kNPDqZYBC.jpg"
+                             alt="Звёздные войны: Силы судьбы">
+                        <h4 class="tv-card__head">Звёздные войны: Силы судьбы</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.1</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/latxtxQYgODFBwh3dO2TGT3Ooat.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/hytEUV61X3Tp2EOaUZkayH98xVy.jpg"
+                             alt="Lego Звездные войны: Байки дроидов">
+                        <h4 class="tv-card__head">Lego Звездные войны: Байки дроидов</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">7.3</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/1uI5ZG2eGEV25n3klN4M1SrJCl0.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/4sHLM2pdGuKFaPxNsaXNR2mf108.jpg"
+                             alt="ЛЕГО. Звездные войны. Приключения изобретателей">
+                        <h4 class="tv-card__head">ЛЕГО. Звездные войны. Приключения изобретателей</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.8</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/1S1j1QxwLNPNiUrq8GSg05KkAmY.jpg"
+                             data-backdrop="" alt="Lego Звездные войны: Хроники Йоды">
+                        <h4 class="tv-card__head">Lego Звездные войны: Хроники Йоды</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">8</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/97dmYYI7TACdGvXWQd2sIyMq16n.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/v5R177GUoZXooZgyLGPntHgb9OC.jpg"
+                             alt="LEGO Star Wars: All-Stars">
+                        <h4 class="tv-card__head">LEGO Star Wars: All-Stars</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">7.5</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/rwYL1fGB004owaTmprYmx8STKqq.jpg"
+                             data-backdrop="" alt="Star Wars Rebels Recon">
+                        <h4 class="tv-card__head">Star Wars Rebels Recon</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">5.8</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/z2q1RjIX1S2GDc75f4ohT3GQBoK.jpg"
+                             data-backdrop="" alt="Star Wars Galaxy of Adventures">
+                        <h4 class="tv-card__head">Star Wars Galaxy of Adventures</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
 
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/gusi-lebedi/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">Гуси Лебеди</h3>
-								<span class="card-tag tag">75 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 1 000 ₽</div>
-								<div class="category">Русская кухня</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/bTaX5IDnbueFD0eHeUJVwUpyjcT.jpg"
+                             data-backdrop="" alt="Science of Star Wars">
+                        <h4 class="tv-card__head">Science of Star Wars</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
 
-					<a href="restaurant.html" class="card card-restaurant">
-						<img src="img/pizza-burger/preview.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title">PizzaBurger</h3>
-								<span class="card-tag tag">45 мин</span>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="rating">
-									4.5
-								</div>
-								<div class="price">От 700 ₽</div>
-								<div class="category">Пицца</div>
-							</div>
-							<!-- /.card-info -->
-						</div>
-						<!-- /.card-text -->
-					</a>
-					<!-- /.card -->
-				</div>
-				<!-- /.cards -->
-			</section>
-			<section class="menu hide">
-				<div class="section-heading">
-					<h2 class="section-title restaurant-title">Пицца Плюс</h2>
-					<div class="card-info">
-						<div class="rating">
-							4.5
-						</div>
-						<div class="price">От 900 ₽</div>
-						<div class="category">Пицца</div>
-					</div>
-					<!-- /.card-info -->
-				</div>
-				<div class="cards cards-menu">
-					<div class="card">
-						<img src="img/pizza-plus/pizza-vesuvius.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Везувий</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, сыр «Моцарелла», ветчина, пепперони, перец
-									«Халапенье», соус «Тобаско», томаты.
-								</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">545 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
+                        <img class="tv-card__img" src="./img/no-poster.jpg" data-backdrop=""
+                             alt="I've Never Seen Star Wars">
+                        <h4 class="tv-card__head">I've Never Seen Star Wars</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
+                        <span class="tv-card__vote">6.2</span>
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/iWTvTLpA83iNj2fG9TxomEo7b5M.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/op6aQ6p9QGmFUxErOGSVHzyUC2R.jpg"
+                             alt="LEGO Star Wars: The Resistance Rises">
+                        <h4 class="tv-card__head">LEGO Star Wars: The Resistance Rises</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
 
-					<div class="card">
-						<img src="img/pizza-plus/pizza-girls.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Девичник</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, постное тесто, нежирный сыр, кукуруза, лук, маслины,
-									грибы, помидоры, болгарский перец.
-								</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">450 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
+                        <img class="tv-card__img" src="./img/no-poster.jpg" data-backdrop=""
+                             alt="Star Wars live-action TV series">
+                        <h4 class="tv-card__head">Star Wars live-action TV series</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
 
-					<div class="card">
-						<img src="img/pizza-plus/pizza-oleole.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Оле-Оле</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, сыр «Моцарелла», черри, маслины, зелень, майонез
-								</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">440 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
+                        <img class="tv-card__img"
+                             src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/cPWxWAlsJw1QVNNuufPzZzebVtY.jpg"
+                             data-backdrop="https://image.tmdb.org/t/p/w185_and_h278_bestv2/3bBC4u27W4TfOkCVKds7nofJCfe.jpg"
+                             alt="Star Wars: Jedi Temple Challenge">
+                        <h4 class="tv-card__head">Star Wars: Jedi Temple Challenge</h4>
+                    </a>
+                </li>
+                <li class="tv-shows__item">
+                    <a href="#" class="tv-card">
 
-					<div class="card">
-						<img src="img/pizza-plus/pizza-plus.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Плюс</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, сыр «Моцарелла», сыр «Чеддер», томаты, пепперони,
-									телятина, грибы, бекон, болгарский перец.
-								</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">805 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
+                        <img class="tv-card__img" src="./img/no-poster.jpg" data-backdrop=""
+                             alt="Untitled Star Wars: Rogue One Prequel Series">
+                        <h4 class="tv-card__head">Untitled Star Wars: Rogue One Prequel Series</h4>
+                    </a>
+                </li>
+            </ul>
+        </section>
 
-					<div class="card">
-						<img src="img/pizza-plus/pizza-hawaiian.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Гавайская</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, сыр «Моцарелла», ветчина, ананасы</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">440 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
+    </div>
+</main>
 
-					<div class="card">
-						<img src="img/pizza-plus/pizza-classic.jpg" alt="image" class="card-image"/>
-						<div class="card-text">
-							<div class="card-heading">
-								<h3 class="card-title card-title-reg">Пицца Классика</h3>
-							</div>
-							<!-- /.card-heading -->
-							<div class="card-info">
-								<div class="ingredients">Соус томатный, сыр «Моцарелла», сыр «Пармезан», ветчина, салями,
-									грибы.
-								</div>
-							</div>
-							<!-- /.card-info -->
-							<div class="card-buttons">
-								<button class="button button-primary button-add-cart">
-									<span class="button-card-text">В корзину</span>
-									<span class="button-cart-svg"></span>
-								</button>
-								<strong class="card-price-bold">510 ₽</strong>
-							</div>
-						</div>
-						<!-- /.card-text -->
-					</div>
-					<!-- /.card -->
-				</div>
-				<!-- /.cards -->
-			</section>
+<div class="modal hide">
+    <div class="modal__content">
+            <div class="poster__wrapper">
+                <div class="poster">
+                    <div class="image__content">
+                        <img class="tv-card__img"
+                             src="img/no-poster.jpg"
+                             alt="Название шоу">
+                    </div>
 
-		</div>
-		<!-- /.container -->
-	</main>
+                </div>
+            </div>
 
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-block">
-				<img src="img/icon/logo.svg" alt="logo" class="logo footer-logo"/>
-				<nav class="footer-nav">
-					<a href="#" class="footer-link">Ресторанам </a>
-					<a href="#" class="footer-link">Курьерам</a>
-					<a href="#" class="footer-link">Пресс-центр</a>
-					<a href="#" class="footer-link">Контакты</a>
-				</nav>
-				<div class="social-links">
-					<a href="#" class="social-link"><img src="img/social/instagram.svg" alt="instagram"/></a>
-					<a href="#" class="social-link"><img src="img/social/fb.svg" alt="facebook"/></a>
-					<a href="#" class="social-link"><img src="img/social/vk.svg" alt="vk"/></a>
-				</div>
-				<!-- /.social-links -->
-			</div>
-			<!-- /.footer-block -->
-		</div>
-	</footer>
+            <article class="modal__description">
+                <h2 class="modal__title">
+                    Название шоу
+                </h2>
 
-	<div class="modal modal-cart">
-		<div class="modal-dialog">
-			<div class="modal-header">
-				<h3 class="modal-title">Корзина</h3>
-				<button class="close">&times;</button>
-			</div>
-			<!-- /.modal-header -->
-			<div class="modal-body">
-				<div class="food-row">
-					<span class="food-name">Ролл угорь стандарт</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						<button class="counter-button">-</button>
-						<span class="counter">1</span>
-						<button class="counter-button">+</button>
-					</div>
-				</div>
-				<!-- /.foods-row -->
-				<div class="food-row">
-					<span class="food-name">Ролл угорь стандарт</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						<button class="counter-button">-</button>
-						<span class="counter">1</span>
-						<button class="counter-button">+</button>
-					</div>
-				</div>
-				<!-- /.foods-row -->
-				<div class="food-row">
-					<span class="food-name">Ролл угорь стандарт</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						<button class="counter-button">-</button>
-						<span class="counter">1</span>
-						<button class="counter-button">+</button>
-					</div>
-				</div>
-				<!-- /.foods-row -->
-				<div class="food-row">
-					<span class="food-name">Ролл угорь стандарт</span>
-					<strong class="food-price">250 ₽</strong>
-					<div class="food-counter">
-						<button class="counter-button">-</button>
-						<span class="counter">1</span>
-						<button class="counter-button">+</button>
-					</div>
-				</div>
-				<!-- /.foods-row -->
-			</div>
-			<!-- /.modal-body -->
-			<div class="modal-footer">
-				<span class="modal-pricetag">1250 ₽</span>
-				<div class="footer-buttons">
-					<button class="button button-primary">Оформить заказ</button>
-					<button class="button clear-cart">Отмена</button>
-				</div>
-			</div>
-			<!-- /.modal-footer -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
+                <section class="genres">
+                    <h3>Жанр:</h3>
+                    <ul class="genres-list">
+                        <li>Документальный</li>
+                        <li>Мелодрама</li>
+                        <li>Мультфильм для взрослых</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Рейтинг</h3>
+                    <span class="rating">10</span>
+                </section>
 
-	<div class="modal-auth">
-		<div class="modal-dialog modal-dialog-auth">
-			<button class="close-auth">&times;</button>
-			<form id="logInForm">
-				<fieldset class="modal-body">
-					<legend class="modal-title">Авторизация</legend>
-					<label class="label-auth">
-						<span>Логин</span>
-						<input id="login" type="text">
-					</label>
-					<label class="label-auth">
-						<span>Пароль</span>
-						<input id="password" type="password">
-					</label>
-				</fieldset>
-				<!-- /.modal-body -->
-				<div class="modal-footer">
-					<div class="footer-buttons">
-						<button class="button button-primary button-login" type="submit">Войти</button>
-					</div>
-				</div>
-			</form>
-			<!-- /.modal-footer -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-	<script src="js/main.js"></script>
+
+                <section class="header__info">
+
+
+                    <h3 dir="auto">Обзор: </h3>
+                    <div class="overview" dir="auto">
+
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis ut
+                            vero, commodi quaerat quasi animi nam corporis hic debitis nulla, ullam non. Quia cupiditate
+                            quo obcaecati hic. Molestiae, numquam natus!</p>
+
+                    </div>
+                    <p class="modal__link-wrapper">
+                        <a class="modal__link" href="https://google.com" target="_blanc">Оффициальная страница</a>
+                    </p>
+                </section>
+            </article>
+            <div class="cross">
+                <span></span>
+                <span></span>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="preloader">
+    <div class="preloader-wrapper">
+        <div class="preloader-one"></div>
+        <div class="preloader-one"></div>
+        <div class="preloader-one"></div>
+        <div class="preloader-one"></div>
+        <div class="preloader-two"></div>
+        <div class="preloader-three"></div>
+    </div>
+</div>
+
+
+
+<script src="https://use.fontawesome.com/c79e2f3459.js"></script>
+
 </body>
 
 </html>
