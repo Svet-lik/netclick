@@ -468,6 +468,9 @@ main {
     justify-content: space-between;
 }
 
+.tv-shows__list.search__none {   
+    grid-template-columns: none;
+}
 
 .tv-shows__item {
     min-width: 185px;
