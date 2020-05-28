@@ -15,6 +15,7 @@ const modalLink = document.querySelector('.modal__link');
 const searchForm = document.querySelector('.search__form');
 const searchFormInput = document.querySelector('.search__form-input');
 const preloader = document.querySelector('.preloader');
+const imageContent = document.querySelector('.image__content');
 
 const loading = document.createElement('div');
 loading.className = 'loading';
@@ -148,11 +149,14 @@ tvShowsList.addEventListener('click', event => {
                 overview,
                 homepage
             }) => {
-
-                tvCardImg.src = posterPath ? IMG_URL + posterPath : 'img/no-poster.jpg';
-                tvCardImg.alt = title;
+                if (posterPath) {
+                    imageContent.style.visibility = 'visible';
+                    tvCardImg.src = IMG_URL + posterPath;
+                    tvCardImg.alt = title;
+                } else {
+                    imageContent.style.visibility = 'hidden';
+                };                
                 modalTitle.textContent = title;
-                //genresList.innerHTML = data.genres.reduce((acc, item) => `${acc}<li>${item.name}</li>`, '');
                 genresList.textContent = '';
                 for (const item of genres) {
                     genresList.innerHTML += `<li>${item.name}</li>`;
