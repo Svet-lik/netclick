@@ -16,6 +16,9 @@ const searchForm = document.querySelector('.search__form');
 const searchFormInput = document.querySelector('.search__form-input');
 const preloader = document.querySelector('.preloader');
 const imageContent = document.querySelector('.image__content');
+const tvShowsHead = document.querySelector('.tv-shows__head');
+const modalContent = document.querySelector('.modal__content');
+const pagination = document.querySelector('.pagination');
 
 const loading = document.createElement('div');
 loading.className = 'loading';
@@ -26,7 +29,7 @@ const DBService = class {
         this.API_KEY = 'a63a6f7d2fbae0da1e7f7325031c30ac';
         this.SERVER = 'https://api.themoviedb.org/3';
     }
-    getData = async (url) => {
+    getData = async (url) => {        
         const res = await fetch(url);
         if(res.ok) {
             return res.json();
@@ -43,55 +46,80 @@ const DBService = class {
         return this.getData('card.json');
     }
 
-    getSearchResult = query => this
-        .getData(`${this.SERVER}/search/tv?api_key=${this.API_KEY}&language=ru-RU&query=${query}`);
+    getPageNumber = page => {
+        return this.getData(this.temp + '&page=' + page);
+    }
+
+    getSearchResult = query => {
+        this.temp = `${this.SERVER}/search/tv?api_key=${this.API_KEY}&language=ru-RU&query=${query}`;
+        return this.getData(this.temp);
+    }
     
 
     getTvShow = id => this
     .getData(`${this.SERVER}/tv/${id}?api_key=${this.API_KEY}&language=ru-RU`);
+
+    getTopRated = () => this
+    .getData(`${this.SERVER}/tv/top_rated?api_key=${this.API_KEY}&language=ru-RU`);
+
+    getPopular = () => this
+    .getData(`${this.SERVER}/tv/popular?api_key=${this.API_KEY}&language=ru-RU`);
+
+    getToday = () => this
+    .getData(`${this.SERVER}/tv/airing_today?api_key=${this.API_KEY}&language=ru-RU`);
+    
+    getWeek = () => this
+    .getData(`${this.SERVER}/tv/on_the_air?api_key=${this.API_KEY}&language=ru-RU`);
     
 };
 
+const dbService = new DBService();
+
 //генерируем карточки
-const renderCard = response => {    
-    tvShowsList.textContent = '';    
-    if (response.total_results) {   
-        tvShowsList.classList.remove('search__none');   
-        response.results.forEach(item => {
-            const  { 
-                backdrop_path:backdrop, 
-                name : title, 
-                poster_path : poster, 
-                vote_average : vote,
-                id
-            } = item;
+const renderCard = (response, target) => {    
+    tvShowsList.textContent = '';  
+    if (!response.total_results) {   
+        loading.remove(); 
+        tvShowsHead.textContent = 'К сожалению по вашему запросу ничего не найдено. Попробуйте изменить запрос.'
+        tvShowsHead.style.color = 'red';
+        return;
+    };
+    tvShowsHead.textContent = target ? target.textContent : 'Результат поиска';
+    tvShowsHead.style.color = 'black';
+    searchFormInput.value = '';
+    response.results.forEach(item => {
+        const  { 
+            backdrop_path:backdrop, 
+            name : title, 
+            poster_path : poster, 
+            vote_average : vote,
+            id
+        } = item;
+        const posterImg = poster ? IMG_URL + poster : 'img/no-poster.jpg';
+        const backdropImg = backdrop ? IMG_URL + backdrop : '';
+        const voteElem = vote ? `<span class="tv-card__vote">${vote}</span>` : '';
+        const card = document.createElement('li');    
+        card.className = 'tv-shows__item';
+        card.innerHTML = `
+        <a href="#" id="${id}" class="tv-card">
+                        ${voteElem}
+                        <img class="tv-card__img"
+                             src="${posterImg}"
+                             data-backdrop="${backdropImg}"
+                             alt="${title}">
+                        <h4 class="tv-card__head">${title}</h4>
+                    </a>
+        `;
+        loading.remove();
+        tvShowsList.append(card);
+    });  
+    
+    pagination.textContent = '';
 
-            const posterImg = poster ? IMG_URL + poster : 'img/no-poster.jpg';
-            const backdropImg = backdrop ? IMG_URL + backdrop : '';
-            const voteElem = vote ? `<span class="tv-card__vote">${vote}</span>` : '';
-            const card = document.createElement('li');    
-
-            card.className = 'tv-shows__item';
-            card.innerHTML = `
-            <a href="#" id="${id}" class="tv-card">
-                            ${voteElem}
-                            <img class="tv-card__img"
-                                 src="${posterImg}"
-                                 data-backdrop="${backdropImg}"
-                                 alt="${title}">
-                            <h4 class="tv-card__head">${title}</h4>
-                        </a>
-            `;
-            loading.remove();
-            tvShowsList.append(card);
-
-        })} else {
-            const errCard = document.createElement('p');
-            errCard.className = 'description';
-            loading.remove();            
-            errCard.textContent = `Фильмов с таким названием не найдено. Попробуйте изменить запрос.`;
-            tvShowsList.append(errCard);
-            tvShowsList.classList.add('search__none');
+    if (!target && response.total_pages > 1) {
+        for (let i = 1; i<= response.total_pages; i++) {
+            pagination.innerHTML += `<li><a href="#" class="pages">${i}</a></li>`
+        }
     }
 };
 
@@ -99,10 +127,9 @@ const renderCard = response => {
 searchForm.addEventListener('submit', event => {
     event.preventDefault();
     const value = searchFormInput.value.trim();
-    searchFormInput.value = '';
-    if (value) {
-        tvShows.append(loading);
-        new DBService().getSearchResult(value).then(renderCard);
+    
+    if (value) {        
+        dbService.getSearchResult(value).then(renderCard);
     }
 });
 
@@ -118,6 +145,9 @@ document.addEventListener('click', event => {
     if (!target.closest('.left-menu')) {
         leftMenu.classList.remove('openMenu');
         hamburger.classList.remove('open');
+        leftMenu.querySelectorAll('.dropdown.active').forEach(item => {
+            item.classList.remove('active');
+        })
     }
 });
 
@@ -130,6 +160,26 @@ leftMenu.addEventListener('click', event => {
         leftMenu.classList.add('openMenu');
         hamburger.classList.add('open');
     };
+    if (target.closest('#top-rated')) {  
+        tvShows.append(loading);      
+        dbService.getTopRated().then((response) => renderCard(response, target));
+    };
+    if (target.closest('#popular')) {
+        tvShows.append(loading);
+        dbService.getPopular().then((response) => renderCard(response, target));
+    };
+    if (target.closest('#today')) {
+        tvShows.append(loading);
+        dbService.getToday().then((response) => renderCard(response, target));
+    };
+    if (target.closest('#week')) {
+        tvShows.append(loading);
+        dbService.getWeek().then((response) => renderCard(response, target));
+    };
+    if (target.closest('#search')) {
+        tvShowsList.textContent = '';
+        tvShowsHead.textContent = '';
+    };
 });
 
 // открытие модального окна
@@ -140,7 +190,7 @@ tvShowsList.addEventListener('click', event => {
     card = target.closest('.tv-card');
     preloader.style.display = 'block';
     if (card) {
-        new DBService().getTvShow(card.id)
+        dbService().getTvShow(card.id)
             .then(({ 
                 poster_path : posterPath,
                 name : title,
@@ -150,11 +200,13 @@ tvShowsList.addEventListener('click', event => {
                 homepage
             }) => {
                 if (posterPath) {
-                    imageContent.style.visibility = 'visible';
+                    imageContent.style.display = '';
+                    modalContent.style.paddingLeft = '';
                     tvCardImg.src = IMG_URL + posterPath;
                     tvCardImg.alt = title;
                 } else {
-                    imageContent.style.visibility = 'hidden';
+                    imageContent.style.display = 'none';
+                    modalContent.style.paddingLeft = '25px';
                 };                
                 modalTitle.textContent = title;
                 genresList.textContent = '';
@@ -165,10 +217,10 @@ tvShowsList.addEventListener('click', event => {
                 description.textContent  = overview;
                 modalLink.href = homepage;                
             })
-            .then(() => {
-                preloader.style.display = 'none';
+            .finally(() => {                
                 document.body.style.overflow = 'hidden';
                 modal.classList.remove('hide');
+                preloader.style.display = '';
             });
 
         
@@ -202,3 +254,12 @@ const changeImage = event => {
 
 tvShowsList.addEventListener('mouseover', changeImage);
 tvShowsList.addEventListener('mouseout', changeImage);
+
+pagination.addEventListener('click', event => {
+    event.preventDefault();
+    const target = event.target;
+    if (target.classList.contains('pages')) {
+        tvShows.append(loading);
+        dbService.getPageNumber(target.textContent).then(renderCard);
+    };
+})
